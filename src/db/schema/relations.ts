@@ -1,8 +1,12 @@
 import { relations } from "drizzle-orm";
-import { post, user } from "./main";
+import { role, post, user } from "./main";
 
-export const userRelations = relations(user, ({ many }) => ({
+export const userRelations = relations(user, ({ many, one }) => ({
   posts: many(post),
+  role:  one(role, {
+    fields: [user.role],
+    references: [role.name]
+  })
 }));
 
 export const postRelations = relations(post, ({ one }) => ({
@@ -10,4 +14,9 @@ export const postRelations = relations(post, ({ one }) => ({
     fields: [post.createdBy],
     references: [user.id],
   }),
+}));
+
+
+export const roleRelations = relations(role, ({ many, one }) => ({
+  users: many(user),
 }));

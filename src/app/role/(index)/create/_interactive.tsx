@@ -15,9 +15,10 @@ interface FormProps {
 }
 
 export function Form({ defaultValues }: FormProps) {
+
   const emptyValues = {
     name: "",
-    email: "",
+    user_id: "",
   } satisfies New;
 
   const form = useForm<New>({
@@ -42,32 +43,38 @@ export function Form({ defaultValues }: FormProps) {
   return (
     <F.Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+
+      {/* USER ID */}
+      <F.FormField
+          name="user_id"
+          control={form.control}
+          render={({ field }) => (
+            <F.FormItem>
+              <F.FormLabel>User ID</F.FormLabel>
+              <F.FormControl>
+                <Input {...field} placeholder="Enter User ID" />
+              </F.FormControl>
+              <F.FormMessage />
+            </F.FormItem>
+          )}
+        />
+
+
+        {/* ROLE */}
         <F.FormField
           name="name"
           control={form.control}
           render={({ field }) => (
             <F.FormItem>
-              <F.FormLabel>Title</F.FormLabel>
+              <F.FormLabel>Role</F.FormLabel>
               <F.FormControl>
-                <Input {...field} placeholder="Enter name" />
+                <Input {...field} placeholder="Enter Role" />
               </F.FormControl>
               <F.FormMessage />
             </F.FormItem>
           )}
         />
-        <F.FormField
-          name="email"
-          control={form.control}
-          render={({ field }) => (
-            <F.FormItem>
-              <F.FormLabel>Content</F.FormLabel>
-              <F.FormControl>
-                <Input {...field} placeholder="Enter email" />
-              </F.FormControl>
-              <F.FormMessage />
-            </F.FormItem>
-          )}
-        />
+    
         <Button type="submit" disabled={isPending}>
           Submit{isPending && "ting"}
         </Button>

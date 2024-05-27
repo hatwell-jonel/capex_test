@@ -12,10 +12,15 @@ import {
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import DeleteButton from '@/components/roles/DeleteButton';
+import { db } from '@/db';
+import { role } from '@/db/schema';
+import { revalidatePath } from 'next/cache';
+import { eq } from 'drizzle-orm';
 
 
 async function Page() {
 
+  const page = '/role';
   const roles = await getRoles();
 
   return (
@@ -23,7 +28,7 @@ async function Page() {
       <h1 className={`text-4xl text-center`}>ROLES</h1>
 
       <div className={``}>
-        <Link href="/role2/create">
+        <Link href={`/role/create`}>
           <Button>Create</Button>
         </Link>
 
@@ -44,10 +49,9 @@ async function Page() {
               <TableCell>{u.name}</TableCell>
               <TableCell className="w-10">
                 <div className="flex gap-2">
-                  <Link href={`/role2/${u.id}`}>
+                  <Link href={`/role/${u.id}`}>
                     <Button>Edit</Button>
                   </Link>
-                  
                   <DeleteButton id={u.id} >
                     Delete
                   </DeleteButton>

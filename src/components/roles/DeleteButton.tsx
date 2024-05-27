@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Button } from '@/components/ui/button';
-import { deleteRole } from '@/app/role2/actions/rolesActions';
+import { deleteRole } from '@/app/role/actions/rolesActions';
 import { toast } from 'sonner';
 
 function DeleteButton(

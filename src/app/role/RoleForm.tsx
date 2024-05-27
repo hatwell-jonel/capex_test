@@ -96,7 +96,7 @@ function RoleForm({ defaultValues, roleId }: FormProps) {
               )}
             />
 
-        <Button type="submit" disabled={isPending}>
+        <Button type="submit" disabled={isPending} className="w-full">
           Submit{isPending && "ting"}
         </Button>
       </form>

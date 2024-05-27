@@ -72,59 +72,59 @@ function EditRole({defaultValues}: FormProps) {
 
 
   return (
-    <div className="w-100 space-y-4 bg-slate-50 rounded shadow-md p-10">
+    <div className="flex justify-center">
+      <div className="w-96 space-y-4 bg-slate-50 rounded shadow-md p-10">
+        <h1 className='text-3xl font-bold underline underline-offset-1 text-center mb-4'>UPDATE ROLE</h1>
 
-      <h1 className='mb-5'>UPDATE ROLE</h1>
+        <Link href="/role">
+            <Button variant="default"> ↩️ Back</Button>
+        </Link>
 
-      <Link href="/role">
-          <Button variant="default"> ↩️ Back</Button>
-      </Link>
-
-  
-      <F.Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            {roleId}
-            <F.FormField
-                name="user_id"
-                control={form.control}
-                render={({ field }) => (
-                  <F.FormItem>
-                    <F.FormLabel>User ID</F.FormLabel>
-                    <F.FormControl>
-                      <Input 
-                      {...field} 
-                      placeholder="Enter User ID" />
-                    </F.FormControl>
-                    <F.FormMessage />
-                  </F.FormItem>
-                )}
-              />
-
+    
+        <F.Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <F.FormField
-                name="name"
-                control={form.control}
-                render={({ field }) => ( 
-                  <F.FormItem>
-                    <F.FormLabel>Role</F.FormLabel>
-                    <F.FormControl>
-                      <Input 
-                      {...field}  
-                      placeholder="Enter Role" />
-                    </F.FormControl>
-                    <F.FormMessage />
-                  </F.FormItem> 
-                )}
-              />
+                  name="user_id"
+                  control={form.control}
+                  render={({ field }) => (
+                    <F.FormItem>
+                      <F.FormLabel>User ID</F.FormLabel>
+                      <F.FormControl>
+                        <Input 
+                        {...field} 
+                        placeholder="Enter User ID" />
+                      </F.FormControl>
+                      <F.FormMessage />
+                    </F.FormItem>
+                  )}
+                />
 
-          <Button type="submit" disabled={isPending}>
-            Submit{isPending && "ting"}
-          </Button>
-        </form>
-      </F.Form>
+                <F.FormField
+                  name="name"
+                  control={form.control}
+                  render={({ field }) => ( 
+                    <F.FormItem>
+                      <F.FormLabel>Role</F.FormLabel>
+                      <F.FormControl>
+                        <Input 
+                        {...field}  
+                        placeholder="Enter Role" />
+                      </F.FormControl>
+                      <F.FormMessage />
+                    </F.FormItem> 
+                  )}
+                />
+
+            <Button type="submit" disabled={isPending} className='w-full'>
+              Submit{isPending && "ting"}
+            </Button>
+          </form>
+        </F.Form>
 
 
 
-  </div>
+      </div>
+    </div>
   )
 }
 

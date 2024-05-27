@@ -25,9 +25,9 @@ async function Page() {
 
   return (
     <div className={`flex flex-col w-full justify-end rounded shadow-xl bg-slate-50 p-10`}>
-      <h1 className={`text-4xl text-center`}>ROLES</h1>
+      <h1 className={`text-3xl font-bold underline underline-offset-1 text-center mb-4`}>ROLES</h1>
 
-      <div className={``}>
+      <div>
         <Link href={`/role/create`}>
           <Button>Create</Button>
         </Link>
@@ -42,23 +42,31 @@ async function Page() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {roles.map((u, i) => (
-            <TableRow key={u.id}>
-              <TableCell className="w-15">{i+1}</TableCell>
-              <TableCell className="w-15">{u.user_id}</TableCell>
-              <TableCell>{u.name}</TableCell>
-              <TableCell className="w-10">
-                <div className="flex gap-2">
-                  <Link href={`/role/${u.id}`}>
-                    <Button>Edit</Button>
-                  </Link>
-                  <DeleteButton id={u.id} >
-                    Delete
-                  </DeleteButton>
-                </div>
-              </TableCell>
-            </TableRow>
-          ))}
+          {roles.length > 0 ? (
+            roles.map((u, i) => (
+              <TableRow key={u.id}>
+                <TableCell className="w-15">{i+1}</TableCell>
+                <TableCell className="w-15">{u.user_id}</TableCell>
+                <TableCell>{u.name}</TableCell>
+                <TableCell className="w-10">
+                  <div className="flex gap-2">
+                    <Link href={`/role/${u.id}`}>
+                      <Button>Edit</Button>
+                    </Link>
+                    <DeleteButton id={u.id} >
+                      Delete
+                    </DeleteButton>
+                  </div>
+                </TableCell>
+              </TableRow>
+            ))
+          ) : (
+            <TableRow>
+                <TableCell colSpan={4} className="text-center underline text-gray-600">
+                  No data available
+                </TableCell>
+              </TableRow>
+          )}
         </TableBody>
       </Table>
       </div>
